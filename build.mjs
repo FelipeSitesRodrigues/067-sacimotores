@@ -10,8 +10,8 @@
  *   que no celular é o que separa 90 de 98 no Lighthouse.
  * - {{wa:chave}} vira o link do WhatsApp com a mensagem de site.config.json
  *   (mensagens.chave). {{wa:chave:5511...}} usa outro número.
- *   {{cfg.caminho}} puxa qualquer valor do config (ex.: {{cfg.telefone.exibir}}).
- *   Trocar o número do WhatsApp é mexer só no config.
+ *   {{cfg.caminho}} puxa qualquer valor do config (ex.: {{cfg.telefone.exibir}}),
+ *   no HTML e no JS. Trocar o número do WhatsApp ou os IDs do Google é mexer só no config.
  * - <i data-i="gear" data-w="light" class="..."></i> vira o SVG do Phosphor
  *   (@phosphor-icons/core) embutido. Peso padrão: regular.
  * - <!-- @schema --> recebe o JSON-LD de LocalBusiness montado do config.
@@ -158,13 +158,14 @@ function schema() {
 // ---------------------------------------------------------------- montagem
 let html = readFileSync(P('src/index.html'), 'utf8')
 
+// o JS entra antes dos marcadores, pra ele também poder usar {{cfg.caminho}}
+html = html.replace('<!-- @js -->', `<script>${minJs(juntar('src/js', '.js'))}</script>`)
 html = html.replace(/<i data-i="([\w-]+)"(?: data-w="(\w+)")?(?: class="([^"]*)")?><\/i>/g, (_, nome, peso, classe) => icone(nome, peso || 'regular', classe || ''))
 html = html.replace(/\{\{wa:([\w-]+)(?::(\d+))?\}\}/g, (_, chave, numero) => linkWa(chave, numero))
 html = html.replace(/\{\{cfg\.([\w.]+)\}\}/g, (_, c) => valor(c))
 html = html.replace(/\{\{ano\}\}/g, String(new Date().getFullYear()))
 html = html.replace('<!-- @schema -->', schema())
 html = html.replace('<!-- @css -->', `<style>${minCss(juntar('src/css', '.css'))}</style>`)
-html = html.replace('<!-- @js -->', `<script>${minJs(juntar('src/js', '.js'))}</script>`)
 
 const sobrou = html.match(/\{\{[^}]+\}\}/g)
 if (sobrou) avisos.push(`marcadores sem valor: ${[...new Set(sobrou)].join(', ')}`)

@@ -19,6 +19,12 @@
   "mapa": "https://www.google.com/maps/search/?api=1&query=Av.+Dona+Benedita+Franco+da+Veiga%2C+453+-+Vila+Feital%2C+Mau%C3%A1+-+SP",
   "instagram": "https://www.instagram.com/sacimotores/",
   "facebook": "https://www.facebook.com/sacimotores/",
+  "google": {
+    "analytics": "G-1HHQXLKG80",
+    "ads": "AW-16508353764",
+    "conversaoWhatsapp": "AW-16508353764/n_xACPLr954ZEOT55b89",
+    "tagManager": "GTM-5RJWWJ8H"
+  },
   "mensagens": {
     "orcamento": "Olá! Vim pelo site da Saci Motores e gostaria de um orçamento.",
     "especialista": "Olá! Vim pelo site da Saci Motores e quero falar com um especialista.",

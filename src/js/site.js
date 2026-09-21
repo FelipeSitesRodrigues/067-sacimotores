@@ -30,6 +30,60 @@
   doc.addEventListener('click', (e) => { if (!menu.hidden && !cab.contains(e.target)) fecharMenu(false) })
   matchMedia('(min-width: 1024px)').addEventListener('change', (m) => { if (m.matches) fecharMenu(false) })
 
+  // ---------------------------------------------------------------- Google (Analytics, Ads e Tag Manager)
+  // IDs no site.config.json. Só liga no domínio de verdade, ou com ?tags na URL
+  // pra testar: abrir o site no computador ou na prévia da Vercel e clicar no
+  // WhatsApp não pode virar conversão falsa no Google Ads do cliente.
+  // O script do Google baixa 2 s depois da página pronta, ou no primeiro toque,
+  // o que vier antes: assim ele não disputa a abertura da página.
+  const google = {
+    ga: '{{cfg.google.analytics}}',
+    ads: '{{cfg.google.ads}}',
+    conversao: '{{cfg.google.conversaoWhatsapp}}',
+    gtm: '{{cfg.google.tagManager}}',
+  }
+  const dominio = new URL('{{cfg.dominio}}').hostname.replace(/^www\./, '')
+  const googleLigado = location.hostname.endsWith(dominio) || new URLSearchParams(location.search).has('tags')
+  window.dataLayer = window.dataLayer || []
+  const gtag = (window.gtag = function () { window.dataLayer.push(arguments) })
+  let googleCarregado = false
+  const carregarGoogle = () => {
+    if (!googleLigado || googleCarregado) return
+    googleCarregado = true
+    gtag('js', new Date())
+    gtag('config', google.ga)
+    gtag('config', google.ads)
+    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' })
+    for (const src of [`https://www.googletagmanager.com/gtag/js?id=${google.ga}`, `https://www.googletagmanager.com/gtm.js?id=${google.gtm}`]) {
+      const s = doc.createElement('script')
+      s.async = true
+      s.src = src
+      doc.head.append(s)
+    }
+  }
+  if (googleLigado) {
+    const depois = () => setTimeout(carregarGoogle, 2000)
+    if (doc.readyState === 'complete') depois()
+    else addEventListener('load', depois, { once: true })
+    for (const ev of ['pointerdown', 'keydown', 'touchstart', 'wheel']) addEventListener(ev, carregarGoogle, { once: true, passive: true })
+  }
+
+  // ---------------------------------------------------------------- rastreio dos cliques no WhatsApp
+  // Cada clique vira conversão no Google Ads e evento no Analytics, e sai também
+  // no dataLayer (Tag Manager) e no Pixel da Meta, se um dia for instalado.
+  doc.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="https://wa.me/"]')
+    if (!a) return
+    const origem = a.dataset.zap || a.closest('section')?.id || 'pagina'
+    window.dataLayer.push({ event: 'whatsapp_click', origem })
+    if (googleLigado) {
+      carregarGoogle()
+      gtag('event', 'conversion', { send_to: google.conversao })
+      gtag('event', 'whatsapp_click', { send_to: google.ga, origem })
+    }
+    if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { origem })
+  })
+
   if (!temIO) {
     doc.querySelectorAll('[data-revela]').forEach((el) => el.classList.add('visivel'))
     doc.querySelector('.zap')?.classList.add('zap--on')
@@ -87,14 +141,4 @@
       rootMargin: '0px 0px -30% 0px',
     }).observe(hero)
   }
-
-  // ---------------------------------------------------------------- rastreio dos cliques no WhatsApp
-  // Evento no dataLayer (GA4 / Tag Manager) e no Pixel, se estiverem instalados.
-  doc.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="https://wa.me/"]')
-    if (!a) return
-    const origem = a.dataset.zap || a.closest('section')?.id || 'pagina'
-    ;(window.dataLayer = window.dataLayer || []).push({ event: 'whatsapp_click', origem })
-    if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { origem })
-  })
 })()

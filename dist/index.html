@@ -396,6 +396,49 @@
   doc.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharMenu(true) })
   doc.addEventListener('click', (e) => { if (!menu.hidden && !cab.contains(e.target)) fecharMenu(false) })
   matchMedia('(min-width: 1024px)').addEventListener('change', (m) => { if (m.matches) fecharMenu(false) })
+  const google = {
+    ga: 'G-1HHQXLKG80',
+    ads: 'AW-16508353764',
+    conversao: 'AW-16508353764/n_xACPLr954ZEOT55b89',
+    gtm: 'GTM-5RJWWJ8H',
+  }
+  const dominio = new URL('https://www.sacimotoreseletricos.com.br').hostname.replace(/^www\./, '')
+  const googleLigado = location.hostname.endsWith(dominio) || new URLSearchParams(location.search).has('tags')
+  window.dataLayer = window.dataLayer || []
+  const gtag = (window.gtag = function () { window.dataLayer.push(arguments) })
+  let googleCarregado = false
+  const carregarGoogle = () => {
+    if (!googleLigado || googleCarregado) return
+    googleCarregado = true
+    gtag('js', new Date())
+    gtag('config', google.ga)
+    gtag('config', google.ads)
+    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' })
+    for (const src of [`https://www.googletagmanager.com/gtag/js?id=${google.ga}`, `https://www.googletagmanager.com/gtm.js?id=${google.gtm}`]) {
+      const s = doc.createElement('script')
+      s.async = true
+      s.src = src
+      doc.head.append(s)
+    }
+  }
+  if (googleLigado) {
+    const depois = () => setTimeout(carregarGoogle, 2000)
+    if (doc.readyState === 'complete') depois()
+    else addEventListener('load', depois, { once: true })
+    for (const ev of ['pointerdown', 'keydown', 'touchstart', 'wheel']) addEventListener(ev, carregarGoogle, { once: true, passive: true })
+  }
+  doc.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="https://wa.me/"]')
+    if (!a) return
+    const origem = a.dataset.zap || a.closest('section')?.id || 'pagina'
+    window.dataLayer.push({ event: 'whatsapp_click', origem })
+    if (googleLigado) {
+      carregarGoogle()
+      gtag('event', 'conversion', { send_to: google.conversao })
+      gtag('event', 'whatsapp_click', { send_to: google.ga, origem })
+    }
+    if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { origem })
+  })
   if (!temIO) {
     doc.querySelectorAll('[data-revela]').forEach((el) => el.classList.add('visivel'))
     doc.querySelector('.zap')?.classList.add('zap--on')
@@ -443,13 +486,6 @@
       rootMargin: '0px 0px -30% 0px',
     }).observe(hero)
   }
-  doc.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="https://wa.me/"]')
-    if (!a) return
-    const origem = a.dataset.zap || a.closest('section')?.id || 'pagina'
-    ;(window.dataLayer = window.dataLayer || []).push({ event: 'whatsapp_click', origem })
-    if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { origem })
-  })
 })()</script>
 </body>
 </html>
