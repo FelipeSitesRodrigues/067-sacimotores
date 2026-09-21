@@ -5,7 +5,8 @@
  * de dado (Analytics, conversão do Google Ads) é bloqueado na rede e só fica
  * registrado aqui. Nenhuma visita ou conversão falsa chega na conta dele.
  *
- * - Em localhost, sem ?tags, o Google não pode nem carregar.
+ * - Fora do domínio de verdade (localhost, prévia da Vercel), sem ?tags, o
+ *   Google não pode nem carregar.
  * - Com ?tags (ou no domínio de verdade): carregam Analytics, Ads e Tag Manager,
  *   sai a visita (page_view) e o clique no WhatsApp vira conversão + evento.
  *
@@ -16,8 +17,10 @@ import puppeteer from 'puppeteer-core'
 import { existsSync, readFileSync } from 'node:fs'
 
 const BASE = (process.env.BASE_URL ?? 'http://localhost:3067').replace(/\/$/, '')
-const LOCAL = /^https?:\/\/(localhost|127\.)/.test(BASE)
-const g = JSON.parse(readFileSync(new URL('../site.config.json', import.meta.url), 'utf8')).google
+const cfg = JSON.parse(readFileSync(new URL('../site.config.json', import.meta.url), 'utf8'))
+const g = cfg.google
+// prévia é tudo que não é o domínio do cliente: localhost, *.vercel.app
+const LOCAL = !new URL(BASE).hostname.endsWith(new URL(cfg.dominio).hostname.replace(/^www\./, ''))
 const [contaAds, rotulo] = g.conversaoWhatsapp.replace('AW-', '').split('/')
 const NAVEGADOR = [
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -49,7 +52,7 @@ async function abrir(browser, url) {
 const browser = await puppeteer.launch({ executablePath: NAVEGADOR, headless: true, args: ['--no-first-run'] })
 try {
   if (LOCAL) {
-    console.log('\nNo computador, sem ?tags: o Google fica desligado')
+    console.log('\nNa prévia, sem ?tags: o Google fica desligado')
     const { page, reqs } = await abrir(browser, BASE + '/')
     await page.mouse.wheel({ deltaY: 400 })
     await espera(3500)
