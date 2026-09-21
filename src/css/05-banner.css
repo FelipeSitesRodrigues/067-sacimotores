@@ -1,0 +1,76 @@
+/* ---------------------------------------------------------------- banner: troca e conserto */
+.banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  background: var(--azul-abismo);
+}
+.banner__foto {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  z-index: -2;
+  overflow: hidden;
+}
+.banner__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  filter: saturate(.92) contrast(1.04);
+}
+.banner__foto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--azul-abismo) 0%, rgb(3 14 35 / .78) 22%, rgb(3 14 35 / .3) 58%, rgb(3 14 35 / .2) 100%),
+    linear-gradient(0deg, rgb(3 14 35 / .35), rgb(3 14 35 / 0) 45%);
+}
+.banner__in {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 40px;
+  min-height: 300px;
+  padding-block: clamp(48px, 5vw, 64px);
+}
+.banner__texto { max-width: 660px; }
+.banner__titulo { margin: 14px 0 14px; font-size: clamp(1.75rem, 1.05rem + 1.75vw, 2.4rem); }
+.banner__titulo .destaque { display: block; }
+.banner__texto > p:last-child {
+  max-width: 52ch;
+  font-size: 17px;
+  color: rgb(255 255 255 / .86);
+  text-wrap: pretty;
+}
+.banner__cta { box-shadow: 0 20px 40px -14px rgb(0 0 0 / .7), 0 10px 24px -12px rgb(227 20 31 / .6); }
+
+/* a foto desliza de leve com a rolagem (só onde o navegador faz isso nativo) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes banner-paralaxe {
+      from { transform: translateY(-7%) scale(1.16); }
+      to { transform: translateY(7%) scale(1.16); }
+    }
+    .banner__foto img {
+      animation: banner-paralaxe linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .banner__foto { width: 100%; }
+  .banner__foto img { object-position: 70% 50%; }
+  .banner__foto::after {
+    background: linear-gradient(90deg, rgb(3 14 35 / .95) 0%, rgb(3 14 35 / .82) 58%, rgb(3 14 35 / .5) 100%);
+  }
+  .banner__in { grid-template-columns: 1fr; gap: 24px; min-height: 0; padding-block: 48px; }
+  .banner__texto > p:last-child { font-size: 16px; }
+  .banner__cta { justify-self: end; }
+}

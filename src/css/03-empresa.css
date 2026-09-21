@@ -1,0 +1,65 @@
+/* ---------------------------------------------------------------- nossa empresa */
+.empresa {
+  padding-block: var(--secao);
+  background: var(--branco);
+}
+.empresa__in {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 4.6vw, 64px);
+}
+.empresa__foto {
+  overflow: hidden;
+  border-radius: var(--raio);
+  aspect-ratio: 16 / 9.4;
+  box-shadow: 0 34px 60px -34px rgb(1 23 59 / .55);
+  background: var(--claro);
+}
+.empresa__foto img { width: 100%; height: 100%; object-fit: cover; }
+
+.empresa__texto { display: flex; flex-direction: column; align-items: flex-start; }
+.empresa__sobre { margin-bottom: 12px; }
+.empresa__titulo { margin-bottom: 18px; }
+.empresa__paragrafos p { font-size: 17px; max-width: 54ch; text-wrap: pretty; }
+.empresa__paragrafos p + p { margin-top: 12px; }
+
+.empresa__selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px clamp(16px, 2vw, 26px);
+  margin: 28px 0 32px;
+}
+.empresa__selos li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--texto-suave);
+}
+.empresa__selos .i { font-size: 30px; color: var(--tinta); }
+.empresa__selos b { display: block; color: var(--tinta); white-space: nowrap; }
+@media (min-width: 1200px) {
+  .empresa__selos { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; column-gap: 18px; }
+}
+
+/* celular: título e texto, depois a foto, os selos e o botão (ordem do mockup) */
+@media (max-width: 767px) {
+  .empresa__in { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .empresa__texto { display: contents; }
+  .empresa__sobre { order: 1; }
+  .empresa__titulo { order: 2; margin-bottom: 14px; }
+  .empresa__paragrafos { order: 3; }
+  .empresa__paragrafos p { font-size: 16px; }
+  .empresa__foto { order: 4; margin-top: 24px; }
+  .empresa__selos {
+    order: 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+    margin: 24px 0 26px;
+  }
+  .empresa__selos .i { font-size: 30px; }
+  .empresa__cta { order: 6; width: 100%; }
+}

@@ -1,0 +1,240 @@
+/* ---------------------------------------------------------------- hero */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  background: var(--azul-noite);
+}
+.hero__fundo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero__fundo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 46%;
+}
+.hero__veu {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(1 23 59 / .97) 0%, rgb(1 23 59 / .9) 30%, rgb(1 23 59 / .5) 50%, rgb(1 23 59 / .08) 66%, rgb(1 23 59 / 0) 78%),
+    linear-gradient(0deg, rgb(1 23 59 / .9) 0%, rgb(1 23 59 / .35) 20%, rgb(1 23 59 / 0) 36%);
+}
+
+.hero__in {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 44px;
+  min-height: clamp(560px, 44vw, 860px);
+  padding-block: clamp(52px, 5.4vw, 80px) 34px;
+}
+.hero__texto { align-self: center; max-width: 720px; }
+.hero__sobre { margin-bottom: 20px; }
+.hero__titulo {
+  font-size: clamp(2.2rem, 1.1rem + 2.75vw, 3.3rem);
+  line-height: 1.07;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+.hero__titulo .destaque { display: block; }
+.hero__sub {
+  margin-top: 22px;
+  max-width: 35em;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgb(255 255 255 / .88);
+  text-wrap: pretty;
+}
+.hero__botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.hero__base {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 32px;
+}
+.hero__destaques {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: clamp(28px, 4.6vw, 76px);
+  row-gap: 18px;
+}
+.hero__destaques li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: rgb(255 255 255 / .94);
+}
+.hero__destaques li > span > span { display: block; }
+.hero__destaques .i { font-size: 40px; color: #fff; }
+
+/* assinatura manuscrita, como no mockup */
+.hero__assinatura {
+  position: relative;
+  margin: 0 6px 18px 0;
+  font-family: var(--fonte-assinatura);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: .98;
+  color: #fff;
+  transform: rotate(-9deg);
+  transform-origin: 100% 100%;
+  text-shadow: 0 2px 14px rgb(1 23 59 / .6);
+}
+.hero__assinatura-texto > span { display: block; }
+.hero__assinatura-texto > span:nth-child(2) { padding-left: .28em; }
+.hero__assinatura-texto > span:nth-child(3) { padding-left: .62em; }
+.hero__traco {
+  position: absolute;
+  left: .4em;
+  right: -.5em;
+  bottom: -.38em;
+  width: auto;
+  height: .5em;
+  overflow: visible;
+}
+.hero__traco path {
+  fill: none;
+  stroke: var(--vermelho);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* entrada: a foto assenta, o texto sobe em sequência e a assinatura é escrita */
+@keyframes hero-foto { from { transform: scale(1.07); } }
+@keyframes escreve { from { clip-path: inset(-10% 100% -10% 0); } to { clip-path: inset(-10% 0 -10% 0); } }
+@keyframes traca { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__fundo img { animation: hero-foto 2.2s var(--ease-out) both; }
+  .js .hero__sobre { animation: revela-sobe .9s var(--ease-out) .08s backwards; }
+  .js .hero__titulo { animation: revela-sobe 1s var(--ease-out) .16s backwards; }
+  .js .hero__sub { animation: revela-sobe 1s var(--ease-out) .3s backwards; }
+  .js .hero__botoes { animation: revela-sobe 1s var(--ease-out) .42s backwards; }
+  .js .hero__destaques li { animation: revela-sobe .9s var(--ease-out) calc(.62s + var(--i) * 90ms) backwards; }
+  .js .hero__assinatura-texto > span { animation: escreve .55s var(--ease-in-out) backwards; }
+  .js .hero__assinatura-texto > span:nth-child(1) { animation-delay: 1.05s; }
+  .js .hero__assinatura-texto > span:nth-child(2) { animation-delay: 1.5s; animation-duration: .65s; }
+  .js .hero__assinatura-texto > span:nth-child(3) { animation-delay: 2.05s; animation-duration: .65s; }
+  .js .hero__traco path {
+    stroke-dasharray: 1;
+    animation: traca .6s var(--ease-out) 2.6s backwards;
+  }
+}
+
+/* ---------------------------------------------------------------- tablet */
+@media (max-width: 1023px) {
+  .hero__veu {
+    background:
+      linear-gradient(90deg, rgb(1 23 59 / .95) 0%, rgb(1 23 59 / .82) 45%, rgb(1 23 59 / .25) 75%, rgb(1 23 59 / .05) 100%),
+      linear-gradient(0deg, rgb(1 23 59 / .92) 0%, rgb(1 23 59 / 0) 38%);
+  }
+  .hero__base { grid-template-columns: 1fr; }
+  .hero__assinatura { position: absolute; right: 24px; bottom: 150px; margin: 0; }
+}
+
+/* ---------------------------------------------------------------- celular
+   Mesma cena do mockup: foto do galpão sangrando a tela, texto por cima,
+   botões à esquerda com a assinatura ao lado e os 4 destaques em linha.
+   Pela regra de hero no celular (título, imagem, subtítulo, botões), a foto
+   entra no fluxo entre o H1 e o subtítulo: margens negativas deixam só a
+   faixa do motor ocupando espaço, e o resto da foto fica por trás do texto.
+   A foto em pé tem 941x1672; o motor vai de 52% a 86,7% da altura dela,
+   ou seja de 92,4vw a 154,1vw quando a foto ocupa 100vw de largura.        */
+@media (max-width: 767px) {
+  .hero__veu { background: linear-gradient(90deg, rgb(1 23 59 / .35), rgb(1 23 59 / 0) 65%); }
+  .hero__in {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: none;
+    grid-template-areas:
+      'sobre sobre'
+      'titulo titulo'
+      'foto foto'
+      'sub sub'
+      'botoes botoes'
+      'destaques destaques';
+    gap: 0;
+    min-height: 0;
+    padding-block: 30px 26px;
+  }
+  .hero__texto,
+  .hero__base { display: contents; }
+  .hero__sobre { grid-area: sobre; margin-bottom: 14px; font-size: 11px; letter-spacing: .16em; gap: 10px; }
+  .hero__sobre::before { width: 20px; }
+  .hero__titulo { grid-area: titulo; font-size: clamp(2rem, 9vw, 2.45rem); line-height: 1.08; }
+  .hero__titulo .destaque { display: inline; }
+
+  .hero__fundo {
+    grid-area: foto;
+    position: relative;
+    inset: auto;
+    z-index: -2;
+    max-width: none;
+    margin: calc(16px - 92.4vw) -16px calc(-23.6vw - 6px);
+  }
+  .hero__fundo img {
+    height: auto;
+    object-fit: initial;
+    -webkit-mask-image: linear-gradient(180deg, transparent 40%, #000 56%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 40%, #000 56%, #000 86%, transparent 100%);
+  }
+
+  .hero__sub { grid-area: sub; margin-top: 24px; font-size: 16px; line-height: 1.55; max-width: 34em; }
+  .hero__botoes {
+    grid-area: botoes;
+    flex-direction: column;
+    align-items: stretch;
+    width: fit-content;
+    max-width: 100%;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  /* a assinatura fica sobre a foto, no canto de baixo, como no desktop */
+  .hero__assinatura {
+    grid-area: foto;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    z-index: 1;
+    align-self: end;
+    justify-self: end;
+    margin: 0 2px 8px 0;
+    font-size: 25px;
+  }
+  .hero__destaques {
+    grid-area: destaques;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+    column-gap: 4px;
+    margin-top: 30px;
+  }
+  .hero__destaques li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: clamp(10.5px, 2.9vw, 12px);
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .hero__destaques .i { font-size: 30px; }
+}
+@media (max-width: 359px) {
+  .hero__botoes { width: 100%; }
+}

@@ -1,0 +1,81 @@
+/* ---------------------------------------------------------------- rodapé */
+.rodape {
+  background: var(--azul-royal);
+  color: rgb(255 255 255 / .84);
+  border-top: 1px solid rgb(255 255 255 / .12);
+  font-size: 14.5px;
+}
+.rodape__in {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr 1.15fr 1.15fr;
+  gap: 40px;
+  padding-block: 56px 44px;
+}
+.rodape__logo {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 34px -20px rgb(0 0 0 / .55);
+  transition: transform .35s var(--ease-out);
+}
+.rodape__logo:hover { transform: translateY(-2px); }
+.rodape__logo img { width: 180px; }
+.rodape__marca p { margin-top: 16px; max-width: 30ch; }
+
+.rodape__titulo {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.rodape__nav ul { display: grid; gap: 8px; }
+.rodape a { transition: color .2s ease, background-color .2s ease, transform .3s var(--ease-out); }
+.rodape__nav a:hover,
+.rodape__lista a:hover,
+.rodape__local address a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+.rodape__lista { display: grid; gap: 10px; }
+.rodape__lista a { display: inline-flex; align-items: center; gap: 10px; }
+.rodape__lista .i,
+.rodape__local .i { font-size: 18px; color: #fff; }
+.rodape__email span { overflow-wrap: anywhere; }
+
+.rodape__local address a { display: flex; align-items: flex-start; gap: 10px; line-height: 1.55; }
+.rodape__local address .i { margin-top: 3px; }
+.rodape__redes { display: flex; gap: 10px; margin-top: 22px; }
+.rodape__redes a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / .09);
+}
+.rodape__redes a:hover { background: rgb(255 255 255 / .2); transform: translateY(-2px); }
+.rodape__redes .i { font-size: 22px; color: #fff; }
+
+.rodape__base { border-top: 1px solid rgb(255 255 255 / .14); }
+.rodape__base-in {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 18px;
+  font-size: 13px;
+  color: rgb(255 255 255 / .72);
+}
+
+@media (max-width: 1023px) {
+  .rodape__in { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
+}
+@media (max-width: 767px) {
+  .rodape__in { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 30px 18px; padding-block: 40px 30px; }
+  .rodape__logo { padding: 10px 14px; }
+  .rodape__logo img { width: 128px; }
+  .rodape__marca p { font-size: 13.5px; }
+  .rodape__contato { grid-column: 1 / -1; }
+  .rodape__contato .rodape__lista { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  .rodape__email-li { grid-column: 1 / -1; }
+  .rodape__local { grid-column: 1 / -1; }
+  .rodape__base-in { flex-direction: column; gap: 4px; padding-block: 16px 84px; }
+}

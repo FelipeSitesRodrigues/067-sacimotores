@@ -1,0 +1,103 @@
+/* ---------------------------------------------------------------- produtos e serviços */
+.produtos {
+  padding-block: var(--secao);
+  background: var(--claro);
+}
+.produtos__grade {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.produto {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 22px 24px;
+  border-radius: var(--raio);
+  background: var(--branco);
+  box-shadow: var(--sombra-card);
+  transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+.produto:hover { transform: translateY(-6px); box-shadow: var(--sombra-card-hover); }
+.produto:has(.produto__cta:focus-visible) { outline: 3px solid var(--foco); outline-offset: 3px; }
+
+.produto__img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin: 0 -8px 10px;
+}
+/* sombra de chão sob a peça, como no mockup */
+.produto__img::after {
+  content: '';
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: 5%;
+  height: 12%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(1 23 59 / .24), rgb(1 23 59 / 0));
+  transition: transform .5s var(--ease-out), opacity .5s var(--ease-out);
+}
+.produto__img img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform .6s var(--ease-out);
+}
+.produto:hover .produto__img img { transform: translateY(-6px) scale(1.04); }
+.produto:hover .produto__img::after { transform: scaleX(.86); opacity: .7; }
+
+.produto__corpo { display: flex; flex-direction: column; flex: 1; }
+.produto__titulo {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.012em;
+  color: var(--tinta);
+}
+.produto__corpo p {
+  margin-bottom: 20px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+.produto__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--vermelho);
+}
+.produto__cta .seta { font-size: 1.1em; transition: transform .3s var(--ease-out); }
+.produto:hover .produto__cta .seta { transform: translateX(5px); }
+/* o card inteiro abre o WhatsApp daquele produto */
+.produto__cta::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+.produto__cta:focus-visible { outline: none; }
+.produto__chevron { display: none; }
+
+@media (max-width: 1100px) and (min-width: 768px) {
+  .produtos__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* celular: card deitado, foto à esquerda e seta no canto, como no mockup */
+@media (max-width: 767px) {
+  .produtos__grade { grid-template-columns: 1fr; gap: 12px; }
+  .produto {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 12px 14px 6px;
+  }
+  .produto:hover { transform: none; }
+  .produto__img { flex: 0 0 34%; margin: 0 -4px 0 0; }
+  .produto__titulo { margin-bottom: 4px; font-size: 17px; }
+  .produto__corpo p { margin-bottom: 8px; font-size: 13.5px; line-height: 1.5; }
+  .produto__cta { font-size: 13.5px; white-space: nowrap; }
+  .produto__cta .seta { display: none; }
+  .produto__chevron { display: block; flex: none; font-size: 18px; color: var(--vermelho); }
+}

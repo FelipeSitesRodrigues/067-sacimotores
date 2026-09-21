@@ -1,0 +1,212 @@
+{
+  "hero-desktop-960.webp": {
+    "w": 960,
+    "h": 540,
+    "kb": 38
+  },
+  "hero-desktop-960.avif": {
+    "w": 960,
+    "h": 540,
+    "kb": 29
+  },
+  "hero-desktop-1280.webp": {
+    "w": 1280,
+    "h": 720,
+    "kb": 56
+  },
+  "hero-desktop-1280.avif": {
+    "w": 1280,
+    "h": 720,
+    "kb": 42
+  },
+  "hero-desktop-1672.webp": {
+    "w": 1672,
+    "h": 941,
+    "kb": 79
+  },
+  "hero-desktop-1672.avif": {
+    "w": 1672,
+    "h": 941,
+    "kb": 59
+  },
+  "hero-mobile-480.webp": {
+    "w": 480,
+    "h": 853,
+    "kb": 33
+  },
+  "hero-mobile-480.avif": {
+    "w": 480,
+    "h": 853,
+    "kb": 25
+  },
+  "hero-mobile-800.webp": {
+    "w": 800,
+    "h": 1421,
+    "kb": 67
+  },
+  "hero-mobile-800.avif": {
+    "w": 800,
+    "h": 1421,
+    "kb": 50
+  },
+  "hero-mobile-941.webp": {
+    "w": 941,
+    "h": 1672,
+    "kb": 83
+  },
+  "hero-mobile-941.avif": {
+    "w": 941,
+    "h": 1672,
+    "kb": 62
+  },
+  "fachada-480.webp": {
+    "w": 480,
+    "h": 270,
+    "kb": 20
+  },
+  "fachada-720.webp": {
+    "w": 720,
+    "h": 405,
+    "kb": 45
+  },
+  "fachada-960.webp": {
+    "w": 960,
+    "h": 540,
+    "kb": 80
+  },
+  "fachada-1280.webp": {
+    "w": 1280,
+    "h": 720,
+    "kb": 132
+  },
+  "fachada-1600.webp": {
+    "w": 1600,
+    "h": 900,
+    "kb": 187
+  },
+  "oficina-640.webp": {
+    "w": 640,
+    "h": 427,
+    "kb": 37
+  },
+  "oficina-960.webp": {
+    "w": 960,
+    "h": 640,
+    "kb": 60
+  },
+  "oficina-1200.webp": {
+    "w": 1200,
+    "h": 800,
+    "kb": 80
+  },
+  "motor-close-640.webp": {
+    "w": 640,
+    "h": 427,
+    "kb": 37
+  },
+  "motor-close-1024.webp": {
+    "w": 1024,
+    "h": 683,
+    "kb": 73
+  },
+  "produto-motor-eletrico-240.webp": {
+    "w": 240,
+    "h": 180,
+    "kb": 9
+  },
+  "produto-motor-eletrico-320.webp": {
+    "w": 320,
+    "h": 240,
+    "kb": 14
+  },
+  "produto-motor-eletrico-480.webp": {
+    "w": 480,
+    "h": 360,
+    "kb": 24
+  },
+  "produto-motor-eletrico-640.webp": {
+    "w": 640,
+    "h": 480,
+    "kb": 34
+  },
+  "produto-redutor-240.webp": {
+    "w": 240,
+    "h": 180,
+    "kb": 10
+  },
+  "produto-redutor-320.webp": {
+    "w": 320,
+    "h": 240,
+    "kb": 14
+  },
+  "produto-redutor-480.webp": {
+    "w": 480,
+    "h": 360,
+    "kb": 24
+  },
+  "produto-redutor-640.webp": {
+    "w": 640,
+    "h": 480,
+    "kb": 36
+  },
+  "produto-motofreio-240.webp": {
+    "w": 240,
+    "h": 180,
+    "kb": 10
+  },
+  "produto-motofreio-320.webp": {
+    "w": 320,
+    "h": 240,
+    "kb": 15
+  },
+  "produto-motofreio-480.webp": {
+    "w": 480,
+    "h": 360,
+    "kb": 25
+  },
+  "produto-motofreio-640.webp": {
+    "w": 640,
+    "h": 480,
+    "kb": 37
+  },
+  "produto-bomba-dagua-240.webp": {
+    "w": 240,
+    "h": 180,
+    "kb": 11
+  },
+  "produto-bomba-dagua-320.webp": {
+    "w": 320,
+    "h": 240,
+    "kb": 15
+  },
+  "produto-bomba-dagua-480.webp": {
+    "w": 480,
+    "h": 360,
+    "kb": 27
+  },
+  "produto-bomba-dagua-640.webp": {
+    "w": 640,
+    "h": 480,
+    "kb": 37
+  },
+  "logo-200.webp": {
+    "w": 200,
+    "h": 102,
+    "kb": 12
+  },
+  "logo-400.webp": {
+    "w": 400,
+    "h": 203,
+    "kb": 29
+  },
+  "logo-600.png": {
+    "w": 600,
+    "h": 305,
+    "kb": 55
+  },
+  "og-saci-motores.jpg": {
+    "w": 1200,
+    "h": 630,
+    "kb": 94
+  }
+}

@@ -1,0 +1,84 @@
+/* ---------------------------------------------------------------- CTA final */
+.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(90% 130% at 72% 40%, #0b3c9c 0%, rgb(0 41 116 / 0) 60%),
+    var(--azul-royal);
+}
+.cta__foto {
+  position: absolute;
+  top: 50%;
+  right: -3%;
+  width: min(58%, 820px);
+  z-index: -1;
+  transform: translateY(-50%);
+  opacity: .62;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+}
+.cta__foto img { width: 100%; height: auto; }
+
+.cta__in {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 48px;
+  padding-block: clamp(56px, 6vw, 84px);
+}
+.cta__titulo { margin: 14px 0 14px; }
+.cta__texto > p:not(.sobretitulo) {
+  max-width: 50ch;
+  font-size: 17px;
+  color: rgb(255 255 255 / .88);
+  text-wrap: pretty;
+}
+.cta__botoes { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+
+.cta__lista { display: grid; gap: 22px; padding-right: clamp(0px, 3vw, 40px); }
+.cta__lista li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.cta__lista .i { font-size: 30px; }
+
+/* celular: título e texto em cima; botões e lista lado a lado, como no mockup */
+@media (max-width: 767px) {
+  .cta__foto { width: 110%; right: -40%; top: 58%; opacity: .45; }
+  .cta__in {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    row-gap: 0;
+    padding-block: 48px;
+  }
+  .cta__texto { display: contents; }
+  .cta__texto > * { grid-column: 1 / -1; }
+  .cta__texto > p:not(.sobretitulo) { font-size: 16px; }
+  .cta__botoes {
+    grid-column: 1;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 26px;
+    gap: 12px;
+  }
+  .cta__botoes .btn { padding-inline: 16px; }
+  .cta__lista {
+    grid-column: 2;
+    grid-row: 4;
+    align-self: end;
+    gap: 14px;
+    padding: 0 2px 4px 0;
+  }
+  .cta__lista li { font-size: 14.5px; gap: 10px; }
+  .cta__lista .i { font-size: 22px; }
+}
+@media (max-width: 359px) {
+  .cta__lista { display: none; }
+  .cta__botoes { grid-column: 1 / -1; }
+}

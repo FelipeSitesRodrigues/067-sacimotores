@@ -1,0 +1,35 @@
+{
+  "dominio": "https://www.sacimotoreseletricos.com.br",
+  "nome": "Saci Motores Elétricos Usados",
+  "whatsapp": "5511978175609",
+  "whatsappExibir": "(11) 97817-5609",
+  "whatsappsExtras": [
+    { "numero": "5511945392180", "exibir": "(11) 94539-2180" },
+    { "numero": "5511982082047", "exibir": "(11) 98208-2047" }
+  ],
+  "telefone": { "numero": "+551123241034", "exibir": "(11) 2324-1034" },
+  "email": "vendas@sacimotoreseletricos.com.br",
+  "endereco": {
+    "rua": "Av. Dona Benedita Franco da Veiga, 453",
+    "bairro": "Vila Feital",
+    "cidade": "Mauá",
+    "uf": "SP",
+    "cep": ""
+  },
+  "mapa": "https://www.google.com/maps/search/?api=1&query=Av.+Dona+Benedita+Franco+da+Veiga%2C+453+-+Vila+Feital%2C+Mau%C3%A1+-+SP",
+  "instagram": "https://www.instagram.com/sacimotores/",
+  "facebook": "https://www.facebook.com/sacimotores/",
+  "mensagens": {
+    "orcamento": "Olá! Vim pelo site da Saci Motores e gostaria de um orçamento.",
+    "especialista": "Olá! Vim pelo site da Saci Motores e quero falar com um especialista.",
+    "motor": "Olá! Vim pelo site e quero consultar a disponibilidade de *motor elétrico*.",
+    "redutor": "Olá! Vim pelo site e quero uma cotação de *redutor*.",
+    "motofreio": "Olá! Vim pelo site e quero falar com a equipe sobre *motofreio*.",
+    "bomba": "Olá! Vim pelo site e quero atendimento sobre *bomba d'água*.",
+    "troca": "Olá! Vim pelo site. Tenho um motor queimado e quero saber sobre *troca ou conserto*.",
+    "atendimento": "Olá! Vim pelo site da Saci Motores e gostaria de atendimento.",
+    "final": "Olá! Vim pelo site da Saci Motores e preciso de um motor elétrico.",
+    "flutuante": "Olá! Vim pelo site da Saci Motores e gostaria de atendimento.",
+    "rodape": "Olá! Vim pelo site da Saci Motores e gostaria de atendimento."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "echo sem-instalacao",
+  "buildCommand": "echo dist-ja-gerado",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/servicos.html", "destination": "/#produtos", "permanent": true },
+    { "source": "/servicos", "destination": "/#produtos", "permanent": true },
+    { "source": "/contato.html", "destination": "/#contato", "permanent": true },
+    { "source": "/contato", "destination": "/#contato", "permanent": true },
+    { "source": "/motores-eletricos-usados", "destination": "/#produtos", "permanent": true },
+    { "source": "/motores-eletricos-weg", "destination": "/#produtos", "permanent": true },
+    { "source": "/venda-de-motores-eletricos-recondicionados", "destination": "/#produtos", "permanent": true },
+    { "source": "/motor-industrial-no-bras", "destination": "/#produtos", "permanent": true },
+    { "source": "/motores-eletricos-manutencao", "destination": "/#servicos", "permanent": true },
+    { "source": "/motores-eletricos-conserto", "destination": "/#servicos", "permanent": true },
+    { "source": "/conserto-de-motores-eletrico", "destination": "/#servicos", "permanent": true },
+    { "source": "/oficina-de-rebobinamento-de-motores-eletricos", "destination": "/#servicos", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/img/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+    },
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
